@@ -2,7 +2,7 @@
 GitHub action to automatically create Pull Requests in the manifest repo when updating revisions.
 
 ## usage
-Please add github workflow into triggering repo to create manifest (e.g. sdk-nrfxlib)
+Please call this action from triggering repo to create manifest PRs automatically (e.g. sdk-nrfxlib)
 ```yaml
 name: handle manifest PR
 on:
