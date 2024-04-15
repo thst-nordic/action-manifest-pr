@@ -68,7 +68,7 @@ runs:
       if: ${{ github.event.action == 'opened' }}
       shell: bash
       run: |
-        PROJECT_KEY=$(yq --exit-status '.manifest.projects[] | select(.repo-path == "{{ github.event.repository.name }}") |  key' west.yml)
+        PROJECT_KEY=$(yq --exit-status '.manifest.projects[] | select(.repo-path == "${{ github.event.repository.name }}") |  key' west.yml)
         yq ".manifest.projects[$PROJECT_KEY].revision = \"pull/${{ github.event.pull_request.number }}/head\"" west.yml > tmp.yml
         diff -B west.yml tmp.yml | patch west.yml - || true
 
