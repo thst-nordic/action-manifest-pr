@@ -145,7 +145,7 @@ runs:
           git checkout auto-manifest-${{ github.event.repository.name }}-${{ github.event.pull_request.number }}
           PROJECT_KEY=$(yq --exit-status '.manifest.projects[] | select(.repo-path == "${{ github.event.repository.name }}") |  key' west.yml)
           yq ".manifest.projects[$PROJECT_KEY].revision = \"$GITHUB_SHA\"" west.yml > tmp.yml
-          diff -B west.yml tmp.yml | patch west.yml -
+          diff -B west.yml tmp.yml | patch west.yml - || true
           git add west.yml
           git commit --amend --no-edit
           git push origin auto-manifest-${{ github.event.repository.name }}-${{ github.event.pull_request.number }}:auto-manifest-${{ github.event.repository.name }}-${{ github.event.pull_request.number }} -f
