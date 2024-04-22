@@ -20,3 +20,8 @@ jobs:
         with:
           token: ${{ secrets.NCS_GITHUB_TOKEN }}
 ```
+
+## skipping manifest PR creation:
+There is default skip string define in: https://github.com/nrfconnect/action-manifest-pr/blob/main/action.yml#L17
+
+Action is self-cancelling itself in case of this string is found from PR title or from PR body.
